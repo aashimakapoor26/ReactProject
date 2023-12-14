@@ -106,3 +106,89 @@
     cursor: pointer;
     transition: 0.2s;
 }
+
+/* restaurant-menu-items */
+
+.padding-20 {
+    padding: 0 20px;
+}
+
+.restaurant-menu-items {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.restaurant-menu-list {
+    padding: 0;
+}
+
+.restaurant-menu-heading {
+    font-size: 1rem;
+}
+
+.restaurant-menu-cuisines,
+.restaurant-area-name {
+    color: #7e808c;
+    font-size: 0.6rem;
+    margin-bottom: 0;
+}
+
+.accordion-item {
+    border-bottom: 16px solid #f1f1f6 !important;
+}
+
+.accordion-button:not(.collapsed) {
+    background-color: white !important;
+    color: black !important;
+    box-shadow: none !important;
+    font-weight: 800;
+}
+
+.card-wrapper {
+    border-bottom: 1px solid rgba(40,44,63,.45);
+    padding: 20px 0;
+}
+
+.card-wrapper:first-child {
+    padding-top: 0;
+}
+
+.card-wrapper:last-child {
+    border-bottom: 0;
+}
+
+.card-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.right-section {
+    margin-left: 20px;
+}
+
+.card-image {
+    width: 118px;
+    border-radius: 10px;
+    height: auto;
+}
+
+.card-name,
+.card-price {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #3e4152;
+    word-break: break-word;
+    margin-bottom: 2px
+}
+
+.card-price {
+    margin-bottom: 8px;
+}
+
+.card-description {
+    color: rgba(40,44,63,.45);
+    font-size: 0.8rem;
+    word-break: break-word;
+    margin-bottom: 0;
+}

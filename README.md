@@ -63,5 +63,20 @@ dynamic variables - usestate
 React fibre - new reconcilliateion algorithm which compares two copies of virtual don and update only the changes in real dom. Thats why react is fast
 
 
+# CORS
+when you are trying to make api call from one origin(domainname) to another origin - <localhost to swiggy.com>
+Browser doesn't allow this and you get cors error
+
+corsProxy.io
+copy link and paste it before your api
+
+
+# Single page application
+React has only one page it just changes the component, it doesn't reload the whole website and fetches page from server.
+
+2 types of routing 
+client side - React approach
+server side - traditional way
+
 
 

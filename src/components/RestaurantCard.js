@@ -7,7 +7,9 @@ export const RestaurantCard = (props) => {
         cuisines,
         avgRating,
         costForTwo,
-        cloudinaryImageId
+        cloudinaryImageId,
+        id,
+        sla
      } = restList?.info;
     return (
         <div className='rest-card'>
@@ -19,6 +21,7 @@ export const RestaurantCard = (props) => {
             <h5>{cuisines.join(", ")}</h5>
             <h5>{avgRating}</h5>
             <h5>{costForTwo}</h5>
+            <h5>{sla.slaString}</h5>
         </div>
         )
 }

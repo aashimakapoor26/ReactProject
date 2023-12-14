@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { FOOD_LOGO } from "../utils/constants";
+import { Link } from "react-router-dom";
 
 const Header = () => {
     const [btnType, setBtnType] = useState('Login');
@@ -16,10 +17,10 @@ const Header = () => {
             </div>
             <div className='nav-items'>
                 <ul>
-                    <li>Home</li>
-                    <li>About us</li>
-                    <li>Contact</li>
-                    <li>Cart</li>
+                    <li><Link to='/'>Home</Link></li>
+                    <li><Link to='/about'>About us</Link></li>
+                    <li><Link to='/contact'>Contact</Link></li>
+                    <li><Link to='/about'>Cart</Link></li>
                     <button className="button" onClick={loginLogoutClick}>{btnType}</button>
                 </ul>
             </div>
