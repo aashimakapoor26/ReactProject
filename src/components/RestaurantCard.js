@@ -8,7 +8,6 @@ export const RestaurantCard = (props) => {
         avgRating,
         costForTwo,
         cloudinaryImageId,
-        id,
         sla
      } = restList?.info;
     return (
@@ -17,13 +16,12 @@ export const RestaurantCard = (props) => {
                 className='rest-img'
                 src={`${RESTAURANT_IMAGE_URL}/${cloudinaryImageId}`}
                 alt='rest logo'></img>
-            <h3>{name}</h3>
-            <h5>{cuisines.join(", ")}</h5>
-            <h5>{avgRating}</h5>
-            <h5>{costForTwo}</h5>
-            <h5>{sla.slaString}</h5>
+            <h5>{name}</h5>
+            <h5>{avgRating} * {sla.slaString}</h5>
+            <p>{cuisines.join(", ")}</p>
+            <p>{costForTwo}</p>
         </div>
-        )
+    )
 }
 
 export default RestaurantCard;

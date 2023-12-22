@@ -1,21 +1,12 @@
-import { useEffect, useState } from "react";
 import Shimmer from "../components/Shimmer";
 import Card from "./Card";
 import { Accordion } from "react-bootstrap";
+import { useParams } from "react-router-dom";
+import useRestaurantMenuData from "../utils/useRestaurantMenuData";
 
 const RestaurantMenu = () => {
-
-    const [restaurantMenuData, setRestaurantMenuData] = useState(null);
-
-    useEffect(() => {
-        fetchRestaurantMenuData();
-    }, []);
-
-    const fetchRestaurantMenuData = async () => {
-        const menu = await fetch("https://corsproxy.io/?https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=12.868723&lng=77.653677&restaurantId=268782&catalog_qa=undefined&submitAction=ENTER");
-        const menuJson = await menu.json();
-        setRestaurantMenuData(menuJson.data);
-    }
+    const params = useParams();
+    const restaurantMenuData = useRestaurantMenuData(params.resId);
 
     if (restaurantMenuData === null) return <Shimmer />;
 
@@ -37,7 +28,7 @@ const RestaurantMenu = () => {
             <p className="restaurant-menu-cuisines padding-20">{cuisines.join(', ')} - {costForTwoMessage}</p>
             <p className="restaurant-area-name padding-20">{areaName}, {sla.lastMileTravelString}</p>
             <ul className="restaurant-menu-list">
-                <Accordion defaultActiveKey="Leon Gourmet ( Burgers and Sides )" flush>
+                <Accordion defaultActiveKey={cardsList && cardsList[0]?.card?.card?.title} flush>
                     {(cardsList && cardsList.length > 0) && cardsList.map(cardList => {
                         const {
                             title,

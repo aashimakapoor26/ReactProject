@@ -6,10 +6,9 @@ const Card = (props) => {
         name,
         price,
         description,
-        imageId,
-        itemAttribute
+        imageId
     } = card?.info;
-    console.log(card);
+
     return (
         <div className="card-container">
             <div className="left-section">

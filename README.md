@@ -80,3 +80,27 @@ server side - traditional way
 
 
 
+Functional comp -> a function which return a piece of jsx
+Class based Comp - class which extend React.component and has a render method which return a piece of jsx
+
+super(props) -> to use this inside constructor 
+
+
+React lifecycle-
+Batches all children render phase first then goes to commit phase (because render phase is fast)
+DOM is expensive, react ries to batch updatinn dom for all children
+
+
+
+
+# Optimising app
+hook - utility function
+single responsibility principle makes our app - 
+Readable
+Reuseable
+maintainable
+testable
+
+take out some responsibility from component and assign it to a hook. 
+custom hook
+

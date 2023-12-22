@@ -3,6 +3,7 @@ import RestaurantCard from './RestaurantCard';
 import RestListUrl from '../utils/mockData';
 import ShimmerUI from '../components/Shimmer';
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 const Body = () => {
     const [restaurantList, setRestaurantList] = useState([]);
@@ -16,7 +17,7 @@ const Body = () => {
     const fetchData = async () => {
         const response = await fetch(RestListUrl);
         const responseJson = await response.json();
-        const restaurants = responseJson?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
+        const restaurants = responseJson?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
         setRestaurantList(restaurants);
         setFilteredList(restaurants);
     };
@@ -47,24 +48,25 @@ const Body = () => {
                     <input
                         type="search"
                         className="search-box"
-                        placeholder="Search..."
+                        placeholder="Search for restaurants and food"
                         name="search"
                         value={searchText}
                         onChange={onSearchChange}
                     ></input>
                     <button className="button" onClick={onSearchClick}>Search</button>
                 </div>
-                <button 
+                {/* <button 
                     className="button"
                     onClick={() => onFilterBtnClick()}
-                >Top Rated Restaurants</button>
+                >Top Rated Restaurants</button> */}
             </div>
             <div className='restaurant-container'>
                 {filteredList?.map(restaurant => (
-                    <RestaurantCard
-                        key={restaurant.info.id}
-                        restList={restaurant}
-                    />
+                    <Link to={`/restaurants/${restaurant.info.id}`} key={restaurant.info.id}>
+                        <RestaurantCard
+                            restList={restaurant}
+                        />
+                    </Link>
                 ))}
             </div>
         </div>
