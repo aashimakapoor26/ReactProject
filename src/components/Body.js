@@ -1,9 +1,9 @@
-import React, { useEffect } from "react";
-import RestaurantCard from './RestaurantCard';
+import React, { useEffect, useState } from "react";
+import RestaurantCard, {withBestSellerLabel} from './RestaurantCard';
 import RestListUrl from '../utils/mockData';
 import ShimmerUI from '../components/Shimmer';
-import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import useOnlineStatus from "../utils/useOnlineStatus";
 
 const Body = () => {
     const [restaurantList, setRestaurantList] = useState([]);
@@ -38,34 +38,46 @@ const Body = () => {
         setFilteredList(filteredList);
     }
 
+    const onlineStatus = useOnlineStatus();
+    if(onlineStatus === false) {
+        return <h4>Looks like you are offline, please check your internet</h4>
+    }
+
+    const RestaurantCardBestSeller = withBestSellerLabel(RestaurantCard);
+
     // Conditional rendering
     let bodyContent = restaurantList?.length === 0
     ? <ShimmerUI />
     : (
-        <div className='body'>
-            <div className="filter">
+        <div className='w-3/4 m-auto'>
+            <div className="flex justify-center my-4">
                 <div className="search-container">
                     <input
                         type="search"
-                        className="search-box"
+                        className="px-3 py-2 w-96 rounded border-none mr-2 shadow"
                         placeholder="Search for restaurants and food"
                         name="search"
                         value={searchText}
                         onChange={onSearchChange}
                     ></input>
-                    <button className="button" onClick={onSearchClick}>Search</button>
+                    <button className="px-4 py-2.5 border-none rounded text-white text-sm font-medium bg-rose-500 hover:bg-rose-600 cursor-pointer duration-500" onClick={onSearchClick}>Search</button>
                 </div>
                 {/* <button 
                     className="button"
                     onClick={() => onFilterBtnClick()}
                 >Top Rated Restaurants</button> */}
             </div>
-            <div className='restaurant-container'>
+            <div className='restaurant-container flex flex-wrap justify-center'>
                 {filteredList?.map(restaurant => (
-                    <Link to={`/restaurants/${restaurant.info.id}`} key={restaurant.info.id}>
-                        <RestaurantCard
+                    <Link to={`/restaurants/${restaurant.info.id}`} key={restaurant.info.id} className="no-underline text-gray-500 relative">
+                        { restaurant.info.avgRating >= 4.5
+                        ? (<RestaurantCardBestSeller
                             restList={restaurant}
-                        />
+                        />)
+                        : (<RestaurantCard
+                            restList={restaurant}
+                        />)
+                        }
                     </Link>
                 ))}
             </div>

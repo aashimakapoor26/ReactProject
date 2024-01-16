@@ -102,5 +102,129 @@ maintainable
 testable
 
 take out some responsibility from component and assign it to a hook. 
-custom hook
+custom hooks
+
+
+#
+chunking
+code splitting
+dynamic bundling
+lazy loading
+on demand loading
+dynmaic import
+
+load only when we click on that link
+not load FileSystemDirectoryHandle, only when required (when user go to the particular page)
+distribute code into multiple chunks
+
+CSS frameworks
+
+Chakra
+materilui
+bootstrap
+scss/sass
+css
+styled components
+Tailwind
+Ant design
+
+Postcss - tool used by tailwind css to transform css along with js behind the scenes
+npx - invoking/initializing/executing
+
+# Parcel will use postcssrc to understand tailwind.
+# the content attribute inside tailwind.config takes a list of all the files where I can use my tailwind css.
+# Telling our project we can use tailwind css anywhere under src folder and have one of these extensions.
+# IMPORTING TAILWIND INTO INDEX.CSS FILE
+
+
+
+# Higher order component
+A function that takes a component as input and enhances that compoennt and returns a new component 
+Use to enhance the component
+Pure function -> doesnot change the input
+
+
+# controlled /uncontrolled components
+components which are not controlled by their parents but have their own state to control themselves are uncontrolled
+
+Lifting the state up to control children
+eg - accordian in this app
+
+# props drilling
+passing props from parent to last child via other child components
+multiple level of nesting
+solution - react context
+there are some piece of data which we need to access anywhere in the app
+Only the data which is being used at multiple places should be kept inside createcontext
+useContext() - functional comp
+<Usercontext.Consumer>{(data) => console.log(data)}</Usercontext.Consumer> class based components - old way
+
+Provide updated value to the whole app, use Usercontext.Provider
+for small applications - dont need redux, use context is enough
+
+
+# Store
+
+Its not mandatory, use it only for large scale applications
+Redux is not the only library
+zustand - lightweight library use to manage state
+Redux toolkit and react-redux - newer way of writing redux
+Redux toolkit - > reduced complexity which was there in vanilla redux - best and latest way of writing redux
+React-redux -> bridge between react and redux
+
+Redux store-> a big object with lot of data and its kept in a global central place
+slices in redux store-> different files for diff logical operation
+Cart slice
+user slice
+Theme slice
+
+Add btn -> dispatch an Action -> calls a func (Reducer) -> modifies slice of the store
+Store -> selector -> give data in view (selectore -> sybscribing to a store)
+
+component is subscribed to the store and reads the store data
+
+
+# Redux toolkit - steps
+ - Install libraries-> @reduxjs/tollkit and react-redux
+ - Build our store
+ - Connect our store to our app
+ - Create a cart slice 
+ - Dispatch an action
+ - read data via selector
+
+why provider is coming from react-redux - providing store to react main application 
+configure store is a redux job thats why coming from toolkit
+
+
+useSelector((store) => store) - wrong way
+Always subscribe to the small portion of the store
+
+# unit testing
+Even a single line of code can mess up your whole application. We should worry about every line of code we write.
+ - Manual testing
+ - By writing unit test cases
+
+# Types of testing a developer can do
+ - Unit Testing - test react components in isolation
+ - Integration Testing - testing the integration of the components
+ - End to end testing - Testing react application -  what the user will do throughout the app - selenium tool
+As a developer we are concered about first two testing
+
+# Setting up testing in our app
+- Install RTL
+- Install Jest
+- Install Babel dependencies
+- configure babel.config.js
+- Configure parcel config file to disable babel default transpilation (disbaling so that we can use above two babel configurations we made for jest)
+- Jest configuraion (npx jest --init  (npx -> executing))
+  (select jsdom - which is a library which is like a browser and give features of browser to run test code)
+- Install jsdom library (with jest 28 and higher version we need to install this library seperately)
+-Install @babel/preset-react - to make jsx work in test cases
+- Include @babel/preset-react in the babel config
+- Install @testing-library/jest-dom - to access dom method like tobeinthedocument
+
+# Parcel uses Babel behind the scenes and has its own configurations which will conflict with our babel config
+
+# jsx -> react element -> js object
+
 

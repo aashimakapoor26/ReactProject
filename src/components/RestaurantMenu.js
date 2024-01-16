@@ -1,10 +1,12 @@
 import Shimmer from "../components/Shimmer";
-import Card from "./Card";
-import { Accordion } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import useRestaurantMenuData from "../utils/useRestaurantMenuData";
+import RestaurantCategory from "./RestaurantCategory";
+import { useState } from "react";
 
 const RestaurantMenu = () => {
+    const [showIndex, setShowIndex] = useState(0);
+
     const params = useParams();
     const restaurantMenuData = useRestaurantMenuData(params.resId);
 
@@ -18,38 +20,26 @@ const RestaurantMenu = () => {
         sla
     } = restaurantMenuData?.cards[0]?.card?.card?.info;
 
-    const cardsList = restaurantMenuData?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.filter(itemCard => {
+    const categories = restaurantMenuData?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.filter(itemCard => {
         return itemCard?.card?.card?.hasOwnProperty('itemCards');
     });
 
     return (
-        <div className="restaurant-menu-items">
-            <h2 className="restaurant-menu-heading padding-20">{name}</h2>
-            <p className="restaurant-menu-cuisines padding-20">{cuisines.join(', ')} - {costForTwoMessage}</p>
-            <p className="restaurant-area-name padding-20">{areaName}, {sla.lastMileTravelString}</p>
-            <ul className="restaurant-menu-list">
-                <Accordion defaultActiveKey={cardsList && cardsList[0]?.card?.card?.title} flush>
-                    {(cardsList && cardsList.length > 0) && cardsList.map(cardList => {
-                        const {
-                            title,
-                            itemCards
-                        } = cardList?.card?.card;
-
-                        return (
-                            <Accordion.Item eventKey={title} key={title}>
-                                <Accordion.Header>{`${title} (${itemCards.length})`}</Accordion.Header>
-                                <Accordion.Body>
-                                    {itemCards?.map(itemCard => {
-                                        return (
-                                            <div className="card-wrapper"><Card itemCard={itemCard} key={itemCard.card.info.id} /></div>
-                                        )
-                                    })}
-                                </Accordion.Body>
-                            </Accordion.Item>
-                        )
-                    })}
-                </Accordion>
-            </ul>
+        <div className="w-9/12 m-auto">
+            <div className="mb-4">
+                <h2 className="text-base p-2 mb-0">{name}</h2>
+                <p className="mb-0 text-xs text-slate-400 py-1 px-2">{cuisines.join(', ')} - {costForTwoMessage}</p>
+                <p className="mb-0 text-xs text-slate-400 py-1 px-2">{areaName}, {sla.lastMileTravelString}</p>
+            </div>
+            {categories?.map((category, index) => (
+                // Controlled component
+                <RestaurantCategory 
+                    key={category?.card?.card?.title}
+                    data={category?.card?.card}
+                    showItems={index === showIndex ? true : false}
+                    setShowIndex={() => setShowIndex(index)}
+                />
+            ))}
         </div>
     )
 };
