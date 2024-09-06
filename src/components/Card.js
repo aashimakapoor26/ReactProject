@@ -23,8 +23,8 @@ const Card = ({ items }) => {
                 return (
                     <div key={id} className="card-container flex justify-between items-center mb-4 pb-4 border-b border-inherit-400 last:border-b-0 last:pb-0">
                         <div className="left-section w-10/12">
-                            <h3 className="card-name text-sm text-bold text-slate-800 break-words mb-0">{name}</h3>
-                            <p className="card-price text-sm text-bold text-slate-600 break-words mb-2">Rs {price/100}</p>
+                            <h3 className="card-name text-sm font-bold text-slate-800 break-words mb-0">{name}</h3>
+                            <p className="card-price text-sm font-bold text-slate-600 break-words mb-2">Rs {price/100}</p>
                             <p className="card-description text-slate-400 text-sm mb-0 break-words">{description}</p>
                         </div>
                         {imageId && <div className="right-section ml-8 relative w-2/12">

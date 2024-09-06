@@ -4,11 +4,14 @@ import RestListUrl from '../utils/mockData';
 import ShimmerUI from '../components/Shimmer';
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import { themeConsumer } from '../utils/ThemeContext';
 
 const Body = () => {
     const [restaurantList, setRestaurantList] = useState([]);
     const [filteredList, setFilteredList] = useState([]);
     const [searchText, setSearchText] = useState('');
+    const [page, setPage] = useState(1);
+    const itemsPerPage = 4;
 
     useEffect(() => {
         fetchData();
@@ -38,18 +41,28 @@ const Body = () => {
         setFilteredList(filteredList);
     }
 
+    const handlePageClick = (selectedPage) => {
+        if (
+            selectedPage >= 1 &&
+            selectedPage <= restaurantList.length / itemsPerPage
+          ) {
+            setPage(selectedPage);
+          }
+    }
+
     const onlineStatus = useOnlineStatus();
     if(onlineStatus === false) {
         return <h4>Looks like you are offline, please check your internet</h4>
     }
 
     const RestaurantCardBestSeller = withBestSellerLabel(RestaurantCard);
+    const theme = themeConsumer();
 
     // Conditional rendering
     let bodyContent = restaurantList?.length === 0
     ? <ShimmerUI />
     : (
-        <div className='w-3/4 m-auto'>
+        <div className='w-3/4 m-auto' data-theme={theme}>
             <div className="flex justify-center my-4">
                 <div className="search-container">
                     <input
@@ -68,19 +81,38 @@ const Body = () => {
                 >Top Rated Restaurants</button> */}
             </div>
             <div className='restaurant-container flex flex-wrap justify-center'>
-                {filteredList?.map(restaurant => (
+                {filteredList.length > 0 && filteredList.slice(page * itemsPerPage - itemsPerPage, page * itemsPerPage)?.map(restaurant => (
                     <Link to={`/restaurants/${restaurant.info.id}`} key={restaurant.info.id} className="no-underline text-gray-500 relative">
                         { restaurant.info.avgRating >= 4.5
                         ? (<RestaurantCardBestSeller
-                            restList={restaurant}
+                            restList={restaurant?.info}
                         />)
                         : (<RestaurantCard
-                            restList={restaurant}
+                            restList={restaurant?.info}
                         />)
                         }
                     </Link>
                 ))}
             </div>
+            {filteredList.length > 4 && <div className="pagination">
+                <span 
+                    className={`${page <= 1 ? 'pagination__disable' : 'text-rose-400'}`}
+                    onClick={() => handlePageClick(page - 1)}
+                >&larr;</span>
+                {
+                    [...Array(restaurantList.length / itemsPerPage)].map((_, index) => {
+                        return <span 
+                            className={page === index+1 && 'pagination__selected bg-rose-200'}
+                            key={index}
+                            onClick={() => handlePageClick(index+1)}
+                        >{index+1}</span>
+                    })
+                }
+                <span 
+                    className={`${page >= restaurantList.length / itemsPerPage ? 'pagination__disable' : 'text-rose-400'}`}
+                    onClick={() => handlePageClick(page + 1)}
+                >&rarr;</span>
+            </div>}
         </div>
     );
 

@@ -12,7 +12,7 @@ const RestaurantCategory = ({ data, showItems, setShowIndex }) => {
 
     return (
         <div className="mb-4 p-4 shadow border-b-8 border-rose-400">
-            <div onClick={onToggleClick} className="cursor-pointer">{`${data.title} (${itemCards.length})`}</div>
+            <div onClick={onToggleClick} className="cursor-pointer font-bold">{`${data.title} (${itemCards.length})`}</div>
             {showItems && <Card items={itemCards} />}
         </div>
     );

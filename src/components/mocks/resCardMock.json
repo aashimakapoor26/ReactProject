@@ -1,0 +1,55 @@
+{
+    "id": "407064",
+    "name": "Momo Zone - The Momo Company",
+    "cloudinaryImageId": "8c6d80411d9355da849a2e484bb1c7c1",
+    "locality": "KHB Colony",
+    "areaName": "Koramangala",
+    "costForTwo": "₹150 for two",
+    "cuisines": [
+        "Chinese",
+        "Tibetan",
+        "Fast Food"
+    ],
+    "avgRating": 4,
+    "parentId": "382343",
+    "avgRatingString": "4.0",
+    "totalRatingsString": "100+",
+    "sla": {
+        "deliveryTime": 34,
+        "lastMileTravel": 0.1,
+        "serviceability": "SERVICEABLE",
+        "slaString": "34 mins",
+        "lastMileTravelString": "0.1 km",
+        "iconType": "ICON_TYPE_EMPTY"
+    },
+    "availability": {
+        "nextCloseTime": "2024-01-17 05:00:00",
+        "opened": true
+    },
+    "badges": {},
+    "isOpen": true,
+    "type": "F",
+    "badgesV2": {
+        "entityBadges": {
+            "imageBased": {},
+            "textBased": {},
+            "textExtendedBadges": {}
+        }
+    },
+    "aggregatedDiscountInfoV3": {
+        "header": "₹120 OFF",
+        "subHeader": "ABOVE ₹199",
+        "discountTag": "FLAT DEAL"
+    },
+    "differentiatedUi": {
+        "displayType": "ADS_UI_DISPLAY_TYPE_ENUM_DEFAULT",
+        "differentiatedUiMediaDetails": {
+            "mediaType": "ADS_MEDIA_ENUM_IMAGE",
+            "lottie": {},
+            "video": {}
+        }
+    },
+    "reviewsSummary": {},
+    "displayType": "RESTAURANT_DISPLAY_TYPE_DEFAULT",
+    "restaurantOfferPresentationInfo": {}
+}

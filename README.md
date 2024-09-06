@@ -228,3 +228,10 @@ As a developer we are concered about first two testing
 # jsx -> react element -> js object
 
 
+Testing
+
+Render
+screen.getByText
+Expect().tobe();
+
+

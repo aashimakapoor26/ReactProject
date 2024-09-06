@@ -7,34 +7,29 @@ import About from './pages/About';
 import Contact from './pages/Contact';
 import Error from './pages/Error';
 import RestaurantMenu from './components/RestaurantMenu';
-import UserContext from './utils/UserContext';
+import { UserProvider } from './utils/UserContext';
+import { ThemeProvider } from './utils/ThemeContext';
 import { Provider } from 'react-redux';
 import appStore from './utils/appStore';
 import Cart from './components/Cart';
+import BreadCrumbs from './components/BreadCrumbs';
 // import Grocery from './components/Grocery/Grocery';
 
 // lazy loading
 const Grocery = lazy(() => import('./components/Grocery/Grocery'));
 const AppLayout = () => {
 
-    // authentication code
-    const [userName, setUserName] = useState('');
-
-    useEffect(() => {
-        const data = {
-            name: "Aashi"
-        }
-        setUserName(data.name)
-    }, []);
-
     return (
         <Provider store={appStore}>
-            <UserContext.Provider value={{ loggedInUser: userName }}>
-                <div className='app'>
-                    <Header />
-                    <Outlet />
-                </div>
-            </UserContext.Provider>
+            <ThemeProvider>
+                <UserProvider>
+                    <div className='app'>
+                        <Header />
+                        <BreadCrumbs />
+                        <Outlet />
+                    </div>
+                </UserProvider>
+            </ThemeProvider>
         </Provider>
     )
 }

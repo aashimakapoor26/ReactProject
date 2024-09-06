@@ -2,8 +2,11 @@ import React, { useState, useContext } from "react";
 import { FOOD_LOGO } from "../utils/constants";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
-import UserContext from "../utils/UserContext";
+import { userConsumer } from "../utils/UserContext";
+import { themeConsumer } from '../utils/ThemeContext';
 import { useSelector } from "react-redux";
+import { IoMoonOutline } from "react-icons/io5";
+import { LuSunMoon } from "react-icons/lu";
 
 const Header = () => {
     const [btnType, setBtnType] = useState('Login');
@@ -16,11 +19,11 @@ const Header = () => {
     const onlineStatus = useOnlineStatus();
     const emoji = onlineStatus ? <span>✅</span> : <span>🔴</span>;
 
-    const data = useContext(UserContext);
+    // const data = userConsumer();
+    const { theme, toggleTheme } = themeConsumer();
 
     // Subscribing store through selector
     const cartItems = useSelector((store) => store.cart.items )
-
 
     return (
         <div className='flex justify-between mb-2 shadow'>
@@ -29,7 +32,13 @@ const Header = () => {
             </div>
             <div>
                 <ul className="flex mb-0 p-4 items-center">
-                    {/* <li >Online Status: {emoji}</li> */}
+                    <li>
+                    {
+                        theme === 'light'
+                        ?   <IoMoonOutline onClick={toggleTheme} />
+                        :   <LuSunMoon onClick={toggleTheme} color="white" />
+                    }
+                    </li>
                     <li className="px-2"><Link className="no-underline text-slate-500 hover:text-slate-900" to='/'>Home</Link></li>
                     <li className="px-2"><Link className="no-underline text-slate-500 hover:text-slate-900" to='/about'>About us</Link></li>
                     <li className="px-2"><Link className="no-underline text-slate-500 hover:text-slate-900" to='/contact'>Contact</Link></li>

@@ -24,6 +24,65 @@
     transform: translate(-50%);
 }
 
+.pagination {
+    padding: 10px;
+    margin: 15px 0;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .pagination > span {
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+  
+  .pagination__disable {
+    opacity: 0;
+  }
+  
+  .pagination__selected {
+    border-radius: 50%;
+  }
+
+  .starRatingWrapper {
+    display: flex;
+    padding: 10px 0;
+  }
+
+  :root {
+    --bg-color: #ffffff;
+    --text-color: #333333;
+    --heading-color: #444444;
+  }
+
+  [data-theme = 'light'] {
+    --bg-color: #ffffff;
+    --text-color: #333333;
+    --heading-color: #444444;
+  }
+
+  [data-theme = 'dark'] {
+    --bg-color: #333333;
+    --text-color: #ffffff;
+    --heading-color: #dddddd;
+  }
+
+  body {
+    background-color: var(--bg-color);
+  }
+
+  h2, h3, h5, p, a, span, div {
+    color: var(--text-color) !important;
+  }
+
+  .linkColor {
+    color: #afd5f0 !important;
+    margin: 0 10px;
+  }
+
+  .linkColor:hover {
+    color: #9dcaeb !important; 
+}
 /* .header {
     display: flex;
     justify-content: space-between;

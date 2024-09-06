@@ -18,9 +18,9 @@ const RestaurantMenu = () => {
         costForTwoMessage,
         areaName,
         sla
-    } = restaurantMenuData?.cards[0]?.card?.card?.info;
+    } = restaurantMenuData?.cards[2]?.card?.card?.info;
 
-    const categories = restaurantMenuData?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.filter(itemCard => {
+    const categories = restaurantMenuData?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.filter(itemCard => {
         return itemCard?.card?.card?.hasOwnProperty('itemCards');
     });
 
